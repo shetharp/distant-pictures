@@ -85,7 +85,7 @@ function takePicture() {
 
   //Third, the picture is  taken and saved to the `public/`` folder
   NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {  
-    Jimp.read('public/'+imageName+'.jpg', function (err, image) {
+    Jimp.read("https://www.gstatic.com/webp/gallery/1.sm.jpg", function (err, image) {
       image.invert().write("public/jimp.jpg");
     });
     
