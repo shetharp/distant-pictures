@@ -81,16 +81,18 @@ function takePicture() {
   /// This way we can use it as the filename.
   var imageName = new Date().toString().replace(/[&\/\\#,+()$~%.'":*?<>{}\s-]/g, '');
 
-  console.log('making a making a picture at'+ imageName); // Second, the name is logged to the console.
+  console.log('making a making a picture at '+ imageName); // Second, the name is logged to the console.
 
   //Third, the picture is  taken and saved to the `public/`` folder
   NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {
-    gm('/path/to/my/img.jpg')
-      .resize(240, 240)
-      .noProfile()
-      .write('/path/to/resize.png', function (err) {
-        if (!err) console.log('done');
-    });
+    imageName = 'public' + imageName + '.jpg'
+    console.log("Image Filepath is: " + imageName)
+    // gm('public/' + imageName)
+    //   .resize(240, 240)
+    //   .noProfile()
+    //   .write('public/' + imageName, function (err) {
+    //     if (!err) console.log('done');
+    // });
     
     
     io.emit('newPicture',(imageName+'.jpg')); ///Lastly, the new name is send to the client web browser.
