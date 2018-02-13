@@ -103,11 +103,12 @@ function takePicture() {
         palette.push(image.getPixelColor(250,250));
         paletteData["colors"] = palette.toString();
         console.log(paletteData)
+        io.emit('displayPaletteColors', paletteData)
     }).catch(function (err) {
         console.error(err);
     });
       
-    io.emit('newPicture',paletteData); ///Lastly, the new name is send to the client web browser.
+    io.emit('newPicture', paletteData); ///Lastly, the new name is send to the client web browser.
     /// The browser will take this new name and load the picture from the public folder.
   });
 }

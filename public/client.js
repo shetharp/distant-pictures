@@ -38,7 +38,8 @@ socket.on('newPicture', function(data) {
   document.getElementById('paletteColors').innerHTML = data["colors"];
 });
 
-socket.on('newPalette', function(paletteData) {
+socket.on('displayPaletteColors', function(paletteData) {
+  console.log("Displaying Palette Data.")
   console.log(paletteData);
 });
 
