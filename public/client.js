@@ -34,8 +34,8 @@ function takePicture(){
 
 socket.on('newPicture', function(data) {
   document.getElementById('pictureContainer').src=data["image"];
-  document.getElementById('paletteContainer').src=paletteData["palette"];
-  document.getElementById('paletteColors').innerHTML = paletteData["colors"];
+  document.getElementById('paletteContainer').src=data["palette"];
+  document.getElementById('paletteColors').innerHTML = data["colors"];
 });
 
 socket.on('newPalette', function(paletteData) {
