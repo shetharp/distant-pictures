@@ -36,7 +36,8 @@ socket.on('newPicture', function(msg) {
 });
 
 socket.on('newPalette', function(msg) {
-  document.getElementById('paletteContainer').src=msg;
+  document.getElementById('paletteContainer').src="palette.jpg";
+  document.getElementById('paletteColors').innerHTML = msg;
 });
 
 // read the data from the message that the server sent and change the

@@ -87,9 +87,10 @@ function takePicture() {
   NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {  
     Jimp.read("public/" + imageName + '.jpg').then(function (image) {
         image.clone()
+             .resize(200, Jimp.AUTO)
              .blur(50)
              .color([
-               {apply: 'saturate', params: [25]}, 
+               {apply: 'saturate', params: [20]}, 
                {apply: 'brighten', params: [10]}
              ])
              .write("public/palette.jpg"); // save 
@@ -100,7 +101,7 @@ function takePicture() {
     io.emit('newPicture',(imageName+'.jpg')); ///Lastly, the new name is send to the client web browser.
     /// The browser will take this new name and load the picture from the public folder.
     
-    io.emit('newPalette', ("palette.jpg"));
+    io.emit('newPalette', "Unknown Colors");
   });
 }
 
