@@ -76,7 +76,7 @@ var opts = { //These Options define how the webcam is operated.
 var Webcam = NodeWebcam.create( opts ); //starting up the webcam
 
 function intColorToHex(intColor) {
-  var rgba = Jimp.intoToRGBA(intColor);
+  var rgba = Jimp.intToRGBA(intColor);
   return "#" + rgba["r"].toString(16) + rgba["g"].toString(16) + rgba["b"].toString(16)
 }
 
