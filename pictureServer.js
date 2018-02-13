@@ -89,9 +89,10 @@ function takePicture() {
         image.clone()
              .resize(200, Jimp.AUTO)
              .blur(50)
-             .color([
-               {apply: 'saturate', params: [20]}, 
-               {apply: 'brighten', params: [10]}
+             .image.pixelate(20);
+             .color([ 
+               {apply: 'brighten', params: [10]},
+               {apply: 'saturate', params: [20]}
              ])
              .write("public/palette.jpg"); // save 
     }).catch(function (err) {
