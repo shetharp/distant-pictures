@@ -84,7 +84,12 @@ function takePicture() {
   console.log('making a making a picture at '+ imageName); // Second, the name is logged to the console.
 
   //Third, the picture is  taken and saved to the `public/`` folder
-  NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {    
+  NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {  
+    Jimp.read('public/'+imageName+'.jpg', function (err, image) {
+      image.invert().write("public/jimp.jpg");
+    });
+    
+      
     io.emit('newPicture',(imageName+'.jpg')); ///Lastly, the new name is send to the client web browser.
     /// The browser will take this new name and load the picture from the public folder.
   });
