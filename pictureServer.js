@@ -88,6 +88,10 @@ function takePicture() {
     Jimp.read("public/" + imageName + '.jpg').then(function (image) {
         image.clone()
              .blur(50)
+             .color([
+               {apply: 'saturate', params: [25]}, 
+               {apply: 'brighten', params: [10]}
+             ])
              .write("public/palette.jpg"); // save 
     }).catch(function (err) {
         console.error(err);
