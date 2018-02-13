@@ -39,7 +39,7 @@ socket.on('newPicture', function(msg) {
 socket.on('newPalette', function(data) {
   console.log("Displaying Palette Data.")
   console.log(data);
-  document.getElementById('paletteContainer').src=data["palette"];
+  document.getElementById('paletteImage').src = data["palette"];
   document.getElementById('paletteColors').innerHTML = data["colors"];
 });
 

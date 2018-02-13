@@ -106,7 +106,7 @@ function takePicture() {
         palette.push(intColorToHex( image.getPixelColor(250,50)  ));
         palette.push(intColorToHex( image.getPixelColor(50,250)  ));
         palette.push(intColorToHex( image.getPixelColor(250,250) ));
-        paletteData["colors"] = palette.toString();
+        paletteData["colors"] = palette;
         io.emit('newPalette', paletteData)
     }).catch(function (err) {
         console.error(err);
