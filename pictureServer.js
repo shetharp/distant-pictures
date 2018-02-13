@@ -81,7 +81,7 @@ function takePicture() {
   /// This way we can use it as the filename.
   var imageName = new Date().toString().replace(/[&\/\\#,+()$~%.'":*?<>{}\s-]/g, '');
   var palette = []
-  var paletteData = {"image": "", "colors": ""}
+  var paletteData = {"image": imageName+".jpg", "palette": imageName+"-palette.jpg", "colors": "No Colors"}
   console.log('making a making a picture at '+ imageName); // Second, the name is logged to the console.
 
   //Third, the picture is  taken and saved to the `public/`` folder
@@ -96,7 +96,6 @@ function takePicture() {
                {apply: 'saturate', params: [20]}
              ])
              .write("public/" + imageName + "-palette.jpg"); // save 
-        paletteData["image"] = imageName + "-palette.jpg";
         palette.push(image.getPixelColor(150,150));
         palette.push(image.getPixelColor(50,50));
         palette.push(image.getPixelColor(250,50));
@@ -108,11 +107,8 @@ function takePicture() {
         console.error(err);
     });
       
-    io.emit('newPicture',(imageName+'.jpg')); ///Lastly, the new name is send to the client web browser.
+    io.emit('newPicture',paletteData); ///Lastly, the new name is send to the client web browser.
     /// The browser will take this new name and load the picture from the public folder.
-    
-    console.log(paletteData);
-    io.emit('newPalette', (paletteData));
   });
 }
 

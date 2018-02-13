@@ -27,18 +27,19 @@ function ledOFF() {
 //-- Addition: Forward the `Take a picture` button-press to the webserver.
 function takePicture(){
   socket.emit('takePicture');
+  socket.emit()
 }
 
 //-- Addition: This function receives the new image name and applies it to html element.
 
-socket.on('newPicture', function(msg) {
-  document.getElementById('pictureContainer').src=msg;
+socket.on('newPicture', function(data) {
+  document.getElementById('pictureContainer').src=data["image"];
+  document.getElementById('paletteContainer').src=paletteData["palette"];
+  document.getElementById('paletteColors').innerHTML = paletteData["colors"];
 });
 
 socket.on('newPalette', function(paletteData) {
   console.log(paletteData);
-  document.getElementById('paletteContainer').src=paletteData["image"];
-  document.getElementById('paletteColors').innerHTML = paletteData["colors"];
 });
 
 // read the data from the message that the server sent and change the
