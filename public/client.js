@@ -39,9 +39,9 @@ socket.on('newPicture', function(msg) {
 socket.on('newPalette', function(data) {
   console.log("Displaying Palette Data.")
   console.log(data);
-  document.getElementById('paletteImage').src = data["palette"];
-  // document.getElementById('paletteColors').innerHTML = data["colors"];
-  
+  // document.getElementById('paletteImage').src = data["palette"];
+  document.getElementById('viewPaletteImage').href=data["palette"]
+
   document.getElementById('palette0').style.background = data["colors"][0];
   document.getElementById('palette1').style.background = data["colors"][1];
   document.getElementById('palette2').style.background = data["colors"][2];
@@ -62,11 +62,13 @@ socket.on('server-msg', function(msg) {
   console.log('msg:', msg);
   switch (msg) {
     case "light":
-      document.getElementById('LEDstatus').style.background = "#ff6767";
+      // document.getElementById('LEDstatus').style.background = "#ff6767";
+      document.body.style.backgroundColor = "white";
       console.log("white")
       break;
     case "dark":
-      document.getElementById('LEDstatus').style.background = "#cfcfcf";
+      // document.getElementById('LEDstatus').style.background = "#cfcfcf";
+      document.body.style.backgroundColor = "white";
       console.log("black");
       break;
     default:

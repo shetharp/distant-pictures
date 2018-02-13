@@ -72,6 +72,12 @@
           #paletteColors {
             font-size: 24px;
           }
+          
+          #pictureContainer {
+            height: 300px;
+            margin-top: 5px;
+          }
+          
         </style>
     </head>
     <body>
@@ -80,10 +86,10 @@
         <button class="button" onclick="ledON()">LED ON</button>
         <button class="button" onclick="ledOFF()">LED OFF</button>
         <button class="button" onclick="takePicture()">Take a picture</button>
+        <a class="button" id="viewPaletteImage">Palette Image</button>
       </br>
         <img src="" id= "pictureContainer" alt="">
         <img src="" id= "paletteImage" alt="">
-        <p id="paletteColors">Take a picture to generate a color palette.</p>
         <div class="paletteBG">
           <div class="paletteColor" id="palette0">
             <p id="colortext0"></p>

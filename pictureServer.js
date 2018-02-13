@@ -131,7 +131,9 @@ const parser = new Readline({
 // Read data that is available on the serial port and send it to the websocket
 serial.pipe(parser);
 parser.on('data', function(data) {
-  if (data == "light") { takePicture() }
+  if (data == "light") { 
+    takePicture();
+  }
   console.log('Data:', data);
   io.emit('server-msg', data);
 });
