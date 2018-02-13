@@ -86,9 +86,7 @@ function takePicture() {
   //Third, the picture is  taken and saved to the `public/`` folder
   NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {  
     Jimp.read("public/" + imageName + '.jpg').then(function (image) {
-        image.resize(256, 256)            // resize 
-             .quality(60)                 // set JPEG quality 
-             .invert()                 // set invert 
+        image.invert()                 // set invert 
              .write("public/jimp.jpg"); // save 
     }).catch(function (err) {
         console.error(err);
