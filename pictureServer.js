@@ -75,6 +75,11 @@ var opts = { //These Options define how the webcam is operated.
 };
 var Webcam = NodeWebcam.create( opts ); //starting up the webcam
 
+function intColorToHex(intColor) {
+  var rgba = Jimp.intoToRGBA(intColor);
+  return "#" + rgba["r"].toString(16) + rgba["g"].toString(16) + rgba["b"].toString(16)
+}
+
 function takePicture() {
   /// First, we create a name for the new picture.
   /// The .replace() function removes all special characters from the date.
@@ -96,11 +101,11 @@ function takePicture() {
                {apply: 'saturate', params: [20]}
              ])
              .write("public/" + imageName + "-palette.jpg"); // save 
-        palette.push(JSON.stringify(Jimp.intToRGBA( image.getPixelColor(150,150) )));
-        palette.push(JSON.stringify(Jimp.intToRGBA( image.getPixelColor(50,50)   )));
-        palette.push(JSON.stringify(Jimp.intToRGBA( image.getPixelColor(250,50)  )));
-        palette.push(JSON.stringify(Jimp.intToRGBA( image.getPixelColor(50,250)  )));
-        palette.push(JSON.stringify(Jimp.intToRGBA( image.getPixelColor(250,250) )));
+        palette.push(intColorToHex( image.getPixelColor(150,150) ));
+        palette.push(intColorToHex( image.getPixelColor(50,50)   ));
+        palette.push(intColorToHex( image.getPixelColor(250,50)  ));
+        palette.push(intColorToHex( image.getPixelColor(50,250)  ));
+        palette.push(intColorToHex( image.getPixelColor(250,250) ));
         paletteData["colors"] = palette.toString();
         io.emit('newPalette', paletteData)
     }).catch(function (err) {
