@@ -80,7 +80,7 @@ function takePicture() {
   /// The .replace() function removes all special characters from the date.
   /// This way we can use it as the filename.
   var imageName = new Date().toString().replace(/[&\/\\#,+()$~%.'":*?<>{}\s-]/g, '');
-  var palette = ""
+  var palette = []
   console.log('making a making a picture at '+ imageName); // Second, the name is logged to the console.
 
   //Third, the picture is  taken and saved to the `public/`` folder
@@ -95,7 +95,12 @@ function takePicture() {
                {apply: 'saturate', params: [20]}
              ])
              .write("public/palette.jpg"); // save 
-        palette = image.getPixelColor(150,150);
+        palette.push(image.getPixelColor(150,150));
+        palette.push(image.getPixelColor(50,50));
+        palette.push(image.getPixelColor(250,50));
+        palette.push(image.getPixelColor(50,250));
+        palette.push(image.getPixelColor(250,250));
+        palette.toString()
     }).catch(function (err) {
         console.error(err);
     });
