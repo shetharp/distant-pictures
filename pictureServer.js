@@ -80,21 +80,22 @@ function takePicture() {
   /// The .replace() function removes all special characters from the date.
   /// This way we can use it as the filename.
   var imageName = new Date().toString().replace(/[&\/\\#,+()$~%.'":*?<>{}\s-]/g, '');
-
+  var palette = ""
   console.log('making a making a picture at '+ imageName); // Second, the name is logged to the console.
 
   //Third, the picture is  taken and saved to the `public/`` folder
   NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {  
     Jimp.read("public/" + imageName + '.jpg').then(function (image) {
         image.clone()
-             .resize(200, Jimp.AUTO)
+             .resize(300, 300)
              .blur(50)
-             .image.pixelate(20);
+             .pixelate(100)
              .color([ 
                {apply: 'brighten', params: [10]},
                {apply: 'saturate', params: [20]}
              ])
              .write("public/palette.jpg"); // save 
+        palette = image.getPixelColor(150,150);
     }).catch(function (err) {
         console.error(err);
     });
@@ -102,7 +103,7 @@ function takePicture() {
     io.emit('newPicture',(imageName+'.jpg')); ///Lastly, the new name is send to the client web browser.
     /// The browser will take this new name and load the picture from the public folder.
     
-    io.emit('newPalette', "Unknown Colors");
+    io.emit('newPalette', palette);
   });
 }
 

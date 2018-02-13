@@ -4,9 +4,15 @@
         <meta charset="utf8"/>
         <title>Interaction Engine - Hello You!</title>
         <script src="/socket.io/socket.io.js"></script>
+        <style>
+          #paletteColors {
+            color: #ffffff;
+            font-size: 24px;
+          }
+        </style>
     </head>
     <body>
-        <body>
+        <body bgcolor="#000">
         <button onclick="ledON()">LED ON</button>
         <button onclick="ledOFF()">LED OFF</button>
         <button onclick="takePicture()">Take a picture</button>
