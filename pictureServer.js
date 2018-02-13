@@ -84,14 +84,7 @@ function takePicture() {
   console.log('making a making a picture at '+ imageName); // Second, the name is logged to the console.
 
   //Third, the picture is  taken and saved to the `public/`` folder
-  NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {
-    // open a file called "lenna.png" 
-    Jimp.read(imageName + ".jpg", function (err, image) {
-        if (err) throw err;
-        image.resize(256, 256)            // resize  
-             .greyscale()                 // set greyscale 
-    });
-    
+  NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {    
     io.emit('newPicture',(imageName+'.jpg')); ///Lastly, the new name is send to the client web browser.
     /// The browser will take this new name and load the picture from the public folder.
   });
