@@ -102,7 +102,7 @@ function takePicture() {
         palette.push(image.getPixelColor(250,50));
         palette.push(image.getPixelColor(50,250));
         palette.push(image.getPixelColor(250,250));
-        paletteData["colors"] = palette.toString()
+        paletteData["colors"] = palette.toString();
     }).catch(function (err) {
         console.error(err);
     });
