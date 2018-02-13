@@ -81,40 +81,38 @@ function takePicture() {
   /// This way we can use it as the filename.
   var imageName = new Date().toString().replace(/[&\/\\#,+()$~%.'":*?<>{}\s-]/g, '');
   var palette = []
-  var paletteData = {image: "", colors: ""}
+  var paletteData = {"image": "", "colors": ""}
   console.log('making a making a picture at '+ imageName); // Second, the name is logged to the console.
 
   //Third, the picture is  taken and saved to the `public/`` folder
-  NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {    
+  NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {  
+    Jimp.read("public/" + imageName + '.jpg').then(function (image) {
+        image.clone()
+             .resize(300, 300)
+             .blur(50)
+             .pixelate(100)
+             .color([ 
+               {apply: 'brighten', params: [10]},
+               {apply: 'saturate', params: [20]}
+             ])
+             .write("public/" + imageName + "-palette.jpg"); // save 
+        paletteData["image"] = imageName + "-palette.jpg";
+        palette.push(image.getPixelColor(150,150));
+        palette.push(image.getPixelColor(50,50));
+        palette.push(image.getPixelColor(250,50));
+        palette.push(image.getPixelColor(50,250));
+        palette.push(image.getPixelColor(250,250));
+        paletteData["colors"] = palette.toString()
+    }).catch(function (err) {
+        console.error(err);
+    });
+      
     io.emit('newPicture',(imageName+'.jpg')); ///Lastly, the new name is send to the client web browser.
     /// The browser will take this new name and load the picture from the public folder.
+    
+    console.log(paletteData);
+    io.emit('newPalette', (paletteData));
   });
-  
-  Jimp.read("public/" + imageName + '.jpg').then(function (image) {
-      image.clone()
-           .resize(300, 300)
-           .blur(50)
-           .pixelate(100)
-           .color([ 
-             {apply: 'brighten', params: [10]},
-             {apply: 'saturate', params: [20]}
-           ])
-           .write("public/" + imageName + "-palette.jpg"); // save 
-      paletteData["image"] = imageName + "-palette.jpg";
-      palette.push(image.getPixelColor(150,150));
-      palette.push(image.getPixelColor(50,50));
-      palette.push(image.getPixelColor(250,50));
-      palette.push(image.getPixelColor(50,250));
-      palette.push(image.getPixelColor(250,250));
-      paletteData["colors"] = palette.toString()
-      console.log(paletteData);
-  }).catch(function (err) {
-      console.error(err);
-  });
-  
-  io.emit('newPalette', (paletteData));
-  
-  
 }
 
 //----------------------------------------------------------------------------//
