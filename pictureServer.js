@@ -87,7 +87,7 @@ function takePicture() {
   //Third, the picture is  taken and saved to the `public/`` folder
   NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {  
     Jimp.read("public/" + imageName + '.jpg').then(function (image) {
-        image.clone()
+        image = image.clone()
              .resize(300, 300)
              .blur(50)
              .pixelate(100)
