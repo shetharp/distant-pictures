@@ -40,12 +40,19 @@ socket.on('newPalette', function(data) {
   console.log("Displaying Palette Data.")
   console.log(data);
   document.getElementById('paletteImage').src = data["palette"];
-  document.getElementById('paletteColors').innerHTML = data["colors"];
+  // document.getElementById('paletteColors').innerHTML = data["colors"];
+  
   document.getElementById('palette0').style.background = data["colors"][0];
   document.getElementById('palette1').style.background = data["colors"][1];
   document.getElementById('palette2').style.background = data["colors"][2];
   document.getElementById('palette3').style.background = data["colors"][3];
   document.getElementById('palette4').style.background = data["colors"][4];
+  
+  document.getElementById('colortext0').innerHTML = data["colors"][0];
+  document.getElementById('colortext1').innerHTML = data["colors"][1];
+  document.getElementById('colortext2').innerHTML = data["colors"][2];
+  document.getElementById('colortext3').innerHTML = data["colors"][3];
+  document.getElementById('colortext4').innerHTML = data["colors"][4];
 });
 
 // read the data from the message that the server sent and change the
