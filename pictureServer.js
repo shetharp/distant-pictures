@@ -96,11 +96,11 @@ function takePicture() {
                {apply: 'saturate', params: [20]}
              ])
              .write("public/" + imageName + "-palette.jpg"); // save 
-        palette.push(image.getPixelColor(150,150));
-        palette.push(image.getPixelColor(50,50));
-        palette.push(image.getPixelColor(250,50));
-        palette.push(image.getPixelColor(50,250));
-        palette.push(image.getPixelColor(250,250));
+        palette.push(JSON.stringify(image.intToRGBA( getPixelColor(150,150) )));
+        palette.push(JSON.stringify(image.intToRGBA( getPixelColor(50,50)   )));
+        palette.push(JSON.stringify(image.intToRGBA( getPixelColor(250,50)  )));
+        palette.push(JSON.stringify(image.intToRGBA( getPixelColor(50,250)  )));
+        palette.push(JSON.stringify(image.intToRGBA( getPixelColor(250,250) )));
         paletteData["colors"] = palette.toString();
         io.emit('newPalette', paletteData)
     }).catch(function (err) {
