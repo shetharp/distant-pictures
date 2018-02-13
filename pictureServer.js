@@ -86,14 +86,17 @@ function takePicture() {
   //Third, the picture is  taken and saved to the `public/`` folder
   NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {  
     Jimp.read("public/" + imageName + '.jpg').then(function (image) {
-        image.invert()                 // set invert 
-             .write("public/jimp.jpg"); // save 
+        image.clone()
+             .blur(50)
+             .write("public/palette.jpg"); // save 
     }).catch(function (err) {
         console.error(err);
     });
       
     io.emit('newPicture',(imageName+'.jpg')); ///Lastly, the new name is send to the client web browser.
     /// The browser will take this new name and load the picture from the public folder.
+    
+    io.emit('newPalette', ("palette.jpg"));
   });
 }
 
