@@ -87,7 +87,7 @@ function takePicture() {
   NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {
     imageFilepath = 'public/' + imageName + '.jpg'
     gm(imageFilepath)
-      .resize(240, 240)
+      .resize(240, 240, '!')
       .noProfile()
       .write(imageFilepath, function (err) {
         if (!err) console.log('done');
