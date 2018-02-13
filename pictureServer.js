@@ -85,13 +85,8 @@ function takePicture() {
 
   //Third, the picture is  taken and saved to the `public/`` folder
   NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {
-    imageFilepath = 'public/' + imageName + '.jpg'
-    gm('/path/to/my/img.jpg')
-    .size(function (err, size) {
-      if (!err)
-        console.log(size.width > size.height ? 'wider' : 'taller than you');
-    });
-    
+    imageFilepath = imageName + '.jpg'
+    gm(imageFilepath).resize(240, 240)
     
     io.emit('newPicture',(imageName+'.jpg')); ///Lastly, the new name is send to the client web browser.
     /// The browser will take this new name and load the picture from the public folder.
