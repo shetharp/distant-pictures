@@ -62,11 +62,11 @@ socket.on('server-msg', function(msg) {
   console.log('msg:', msg);
   switch (msg) {
     case "light":
-      document.getElementById('LEDstatus').style.backgroundColor = "#ff6767";
+      document.getElementById('LEDstatus').style.background = "#ff6767";
       console.log("white")
       break;
     case "dark":
-      document.getElementById('LEDstatus').style.backgroundColor = "#cfcfcf";
+      document.getElementById('LEDstatus').style.background = "#cfcfcf";
       console.log("black");
       break;
     default:
