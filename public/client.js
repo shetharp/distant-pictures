@@ -32,11 +32,11 @@ function takePicture(){
 
 //-- Addition: This function receives the new image name and applies it to html element.
 
-socket.on('newPicture', function(data) {
-  document.getElementById('pictureContainer').src=data["image"];
+socket.on('newPicture', function(msg) {
+  document.getElementById('pictureContainer').src=msg;
 });
 
-socket.on('newPalette', function(paletteData) {
+socket.on('newPalette', function(data) {
   console.log("Displaying Palette Data.")
   console.log(paletteData);
   document.getElementById('paletteContainer').src=data["palette"];
