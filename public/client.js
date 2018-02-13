@@ -27,6 +27,7 @@ function ledOFF() {
 //-- Addition: Forward the `Take a picture` button-press to the webserver.
 function takePicture(){
   socket.emit('takePicture');
+  console.alert("THE PICTURE HAS BEEN TAKEN!");
 }
 
 //-- Addition: This function receives the new image name and applies it to html element.
