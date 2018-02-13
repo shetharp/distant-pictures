@@ -86,11 +86,10 @@ function takePicture() {
   //Third, the picture is  taken and saved to the `public/`` folder
   NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {
     imageFilepath = 'public/' + imageName + '.jpg'
-    gm(imageFilepath)
-      .resize(240, 240, '!')
-      .noProfile()
-      .write(imageFilepath, function (err) {
-        if (!err) console.log('done');
+    gm('/path/to/my/img.jpg')
+    .size(function (err, size) {
+      if (!err)
+        console.log(size.width > size.height ? 'wider' : 'taller than you');
     });
     
     
