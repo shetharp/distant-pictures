@@ -95,8 +95,8 @@ function takePicture() {
                {apply: 'brighten', params: [10]},
                {apply: 'saturate', params: [20]}
              ])
-             .write("public/imageName-palette.jpg"); // save 
-        paletteData["image"] = "imageName-palette.jpg";
+             .write("public/" + imageName + "-palette.jpg"); // save 
+        paletteData["image"] = imageName + "-palette.jpg";
         palette.push(image.getPixelColor(150,150));
         palette.push(image.getPixelColor(50,50));
         palette.push(image.getPixelColor(250,50));
