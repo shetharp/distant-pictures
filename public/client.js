@@ -36,6 +36,7 @@ socket.on('newPicture', function(msg) {
 });
 
 socket.on('newPalette', function(paletteData) {
+  console.log(paletteData);
   document.getElementById('paletteContainer').src=paletteData["image"];
   document.getElementById('paletteColors').innerHTML = paletteData["colors"];
 });
