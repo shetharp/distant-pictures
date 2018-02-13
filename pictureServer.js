@@ -28,8 +28,8 @@ var SerialPort = require('serialport'); // serial library
 var Readline = SerialPort.parsers.Readline; // read serial data as lines
 //-- Addition:
 var NodeWebcam = require( "node-webcam" );// load the webcam module
-var fs = require('fs')
-  , gm = require('gm').subClass({imageMagick: true});
+var Jimp = require("jimp");
+
 
 //---------------------- WEBAPP SERVER SETUP ---------------------------------//
 // use express to create the simple webapp
@@ -85,7 +85,13 @@ function takePicture() {
 
   //Third, the picture is  taken and saved to the `public/`` folder
   NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {
-    gm(imageName + '.jpg').sharpen(3);
+    // open a file called "lenna.png" 
+    Jimp.read(imageName + ".jpg", function (err, image) {
+        if (err) throw err;
+        image.resize(256, 256)            // resize  
+             .greyscale()                 // set greyscale 
+    });
+    
     io.emit('newPicture',(imageName+'.jpg')); ///Lastly, the new name is send to the client web browser.
     /// The browser will take this new name and load the picture from the public folder.
   });
