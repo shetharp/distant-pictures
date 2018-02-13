@@ -34,13 +34,13 @@ function takePicture(){
 
 socket.on('newPicture', function(data) {
   document.getElementById('pictureContainer').src=data["image"];
-  document.getElementById('paletteContainer').src=data["palette"];
-  document.getElementById('paletteColors').innerHTML = data["colors"];
 });
 
-socket.on('displayPaletteColors', function(paletteData) {
+socket.on('newPalette', function(paletteData) {
   console.log("Displaying Palette Data.")
   console.log(paletteData);
+  document.getElementById('paletteContainer').src=data["palette"];
+  document.getElementById('paletteColors').innerHTML = data["colors"];
 });
 
 // read the data from the message that the server sent and change the
