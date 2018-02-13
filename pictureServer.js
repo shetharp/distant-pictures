@@ -85,8 +85,8 @@ function takePicture() {
 
   //Third, the picture is  taken and saved to the `public/`` folder
   NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {
-    imageName = 'public' + imageName + '.jpg'
-    console.log("Image Filepath is: " + imageName)
+    imageFilepath = 'public' + imageName + '.jpg'
+    console.log("Image Filepath is: " + imageFilepath)
     // gm('public/' + imageName)
     //   .resize(240, 240)
     //   .noProfile()
