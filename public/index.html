@@ -6,6 +6,29 @@
         <script src="/socket.io/socket.io.js"></script>
         <style>
           * { box-sizing: border-box; }
+          html { margin: 25px; }
+          
+          #LEDstatus {
+            height: 50px;
+            width: 30px;
+            background: #a7a7a7;
+          }
+          
+          button {
+            padding: 10px 25px;
+            height: 50px;
+            line-height: 50px;
+            font-family: sans;
+            font-weight: bold;
+            color: #333333;
+            background: #efefef;
+            border: 4px solid #efefef;
+          }
+
+          button:hover {
+            background: #ffffff;
+            cursor: pointer;
+          }
           
           .paletteBG {
             background: #ffffff;
@@ -22,15 +45,15 @@
             height: 100%;
             width: 20%;
             position: absolute;
+          }
+          
+          .paletteColor p {
             color: #ffffff;
-            font-size: 36px;
+            font-size: 42px;
             font-weight: bold;
             text-transform: uppercase;
             text-shadow: 0 2px 4px rgba(0,0,0,0.40);
             text-align: center;
-          }
-          
-          .paletteColor p {
             position: absolute;
             bottom: 0;
             text-align: center;
@@ -50,6 +73,7 @@
     </head>
     <body>
         <body>
+        <div id="LEDstatus"></div>
         <button onclick="ledON()">LED ON</button>
         <button onclick="ledOFF()">LED OFF</button>
         <button onclick="takePicture()">Take a picture</button>
